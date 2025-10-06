@@ -1,7 +1,7 @@
 // pages/index.js
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Head from "next/head";
 import { Button } from "@/components/ui/button";
 import {
@@ -94,6 +94,25 @@ export default function StringArtHomepage() {
     setMessage("");
   };
 
+  const HeroSection = () => {
+  // Step 1: List your background images
+  const images = [
+    '/images/hero1.png',
+    '/images/hero2.png',
+    '/images/hero3.png',
+  ];
+
+  const [currentImage, setCurrentImage] = useState(0);
+
+  // Step 2: Change background every few seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % images.length);
+    }, 5000); // change every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [images.length]);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-amber-50 to-white">
       <Head>
@@ -140,7 +159,7 @@ export default function StringArtHomepage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="py-16 px-4 md:px-8 text-center max-w-4xl mx-auto">
+      <section className="py-16 px-4 md:px-8 text-center max-w-4xl mx-auto bg-url(currentImage) bg-cover bg-center rounded-lg shadow-lg transition-all ease-in-out">
         <Badge className="mb-4 bg-amber-100 text-amber-800">
           100% Handcrafted with Love
         </Badge>
