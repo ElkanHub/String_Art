@@ -216,7 +216,7 @@ export default function StringArtHomepage() {
                 </CardHeader>
                 <CardFooter className="flex justify-between items-center">
                   {/* <span className="text-sm text-gray-500">⭐ {product.reviews} reviews</span> */}
-                  <a href="#contact">
+                  <a href="#contact-form">
                     <Button
                       onClick={() => {
                         setMessage(
@@ -538,7 +538,7 @@ export default function StringArtHomepage() {
               </div>
             </div>
 
-            <div>
+            <div id="contact-form">
               <Card>
                 <CardHeader>
                   <CardTitle>Request a Consultation</CardTitle>
