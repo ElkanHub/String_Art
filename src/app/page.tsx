@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from "react";
 import Head from "next/head";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -95,19 +96,18 @@ export default function StringArtHomepage() {
   };
 
   // Step 1: List your background images
-  const images = [
-    "/images/hero1.png",
-    "/images/hero2.png",
-    "/images/hero3.png",
+    const images = [
+    '/hero1.png',
+    '/hero2.png',
+    '/hero3.png',
   ];
 
   const [currentImage, setCurrentImage] = useState(0);
 
-  // Step 2: Change background every few seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % images.length);
-    }, 5000); // change every 5 seconds
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [images.length]);
@@ -124,7 +124,7 @@ export default function StringArtHomepage() {
       </Head>
 
       {/* Navigation */}
-      <nav className="flex items-center justify-between p-6 bg-white shadow-sm">
+      <nav className="z-100 fixed top-0 left-0 right-0 flex items-center justify-between p-6 bg-white shadow-sm">
         <div className="text-2xl font-bold text-amber-700">Artisan Strings</div>
         <div className="hidden md:flex space-x-6">
           <a
@@ -159,33 +159,49 @@ export default function StringArtHomepage() {
 
       {/* Hero Section */}
       <section
-        className={`py-16 px-4 md:px-8 text-center max-w-4xl mx-auto bg-url(${images[currentImage]}) bg-cover bg-center rounded-lg shadow-lg transition-all ease-in-out`}
-      >
-        <Badge className="mb-4 bg-amber-100 text-amber-800">
-          100% Handcrafted with Love
-        </Badge>
-        <h1 className="text-4xl md:text-6xl font-bold mb-6 text-gray-800">
-          Where Threads Tell Stories
-        </h1>
-        <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-          Each string art piece is meticulously crafted to transform your space
-          and evoke emotions through the interplay of color, shadow, and
-          texture.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          {/* <Button size="lg" className="bg-amber-600 hover:bg-amber-700 text-lg px-8">
+        className={` mt-18 relative py-16 px-4 md:px-8 text-center max-w-4xl mx-auto transition-all ease-in-out`}>
+         {images.map((img, index) => (
+        <Image
+          key={index}
+          src={img}
+          alt={`Background ${index + 1}`}
+          fill
+          priority={index === currentImage}
+          quality={85}
+          className={`object-cover transition-opacity duration-1000 ease-in-out ${
+            index === currentImage ? 'opacity-100' : 'opacity-0'
+          }`}
+        />
+         ))}
+        
+        <div className="absolute inset-0 bg-amber-50/80"></div>
+        <div className="relative z-10">
+          <Badge className="mb-4 bg-amber-100 text-amber-800">
+            100% Handcrafted with Love
+          </Badge>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-gray-800">
+            Where Threads Tell Stories
+          </h1>
+          <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            Each string art piece is meticulously crafted to transform your
+            space and evoke emotions through the interplay of color, shadow, and
+            texture.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            {/* <Button size="lg" className="bg-amber-600 hover:bg-amber-700 text-lg px-8">
             Explore Collection
           </Button> */}
-          <Button
-            size="lg"
-            className="bg-amber-600 hover:bg-amber-700 text-lg px-8"
-          >
-            Watch Our Process
-          </Button>
+            <Button
+              size="lg"
+              className="bg-amber-600 hover:bg-amber-700 text-lg px-8"
+            >
+              Watch Our Process
+            </Button>
+          </div>
+          <p className="mt-4 text-sm text-gray-500">
+            Free shipping on orders over $40 • 30-day satisfaction guarantee
+          </p>
         </div>
-        <p className="mt-4 text-sm text-gray-500">
-          Free shipping on orders over $40 • 30-day satisfaction guarantee
-        </p>
       </section>
 
       {/* Featured Products */}
