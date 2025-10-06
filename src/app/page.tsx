@@ -94,12 +94,11 @@ export default function StringArtHomepage() {
     setMessage("");
   };
 
-  const HeroSection = () => {
   // Step 1: List your background images
   const images = [
-    '/images/hero1.png',
-    '/images/hero2.png',
-    '/images/hero3.png',
+    "/images/hero1.png",
+    "/images/hero2.png",
+    "/images/hero3.png",
   ];
 
   const [currentImage, setCurrentImage] = useState(0);
@@ -159,7 +158,9 @@ export default function StringArtHomepage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="py-16 px-4 md:px-8 text-center max-w-4xl mx-auto bg-url(currentImage) bg-cover bg-center rounded-lg shadow-lg transition-all ease-in-out">
+      <section
+        className={`py-16 px-4 md:px-8 text-center max-w-4xl mx-auto bg-url(${images[currentImage]}) bg-cover bg-center rounded-lg shadow-lg transition-all ease-in-out`}
+      >
         <Badge className="mb-4 bg-amber-100 text-amber-800">
           100% Handcrafted with Love
         </Badge>
