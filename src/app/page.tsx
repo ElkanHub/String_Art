@@ -10,6 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import {FaInstagram, FaPinterest, FaFacebook, FaYoutube}from 'react-icons/fa6'
 
 export default function StringArtHomepage() {
   const [email, setEmail] = useState('');
@@ -23,6 +24,7 @@ export default function StringArtHomepage() {
       price: "$30 || GHC300",
       description: "Size-30x30 cm. Handcrafted string art capturing the serene beauty of mountain landscapes at dusk.",
       image: "/mountain-sunset.jpg",
+      isLimited: false,
     },
     {
       id: 2,
@@ -31,6 +33,7 @@ export default function StringArtHomepage() {
       description: "Size-50x50 cm. Dynamic string art representing the rhythmic motion of ocean waves.",
       image: "/ocean-waves.jpg",
       isBestseller: true,
+      isLimited: false,
     },
     {
       id: 3,
@@ -39,6 +42,7 @@ export default function StringArtHomepage() {
       description: "Size-60x60 cm. Intricate design depicting a mystical journey through an enchanted forest.",
       image: "/forest-path.jpg",
       isNew: true,
+      isLimited: false,
     }
   ];
 
@@ -89,7 +93,7 @@ export default function StringArtHomepage() {
           <a href="#testimonials" className="text-gray-700 hover:text-amber-600 transition-colors">Reviews</a>
           <a href="#contact" className="text-gray-700 hover:text-amber-600 transition-colors">Contact</a>
         </div>
-        <Button className="bg-amber-600 hover:bg-amber-700">Shop Now</Button>
+        <a href="#contact"><Button className="bg-amber-600 hover:bg-amber-700">Order Now</Button></a>
       </nav>
 
       {/* Hero Section */}
@@ -138,7 +142,7 @@ export default function StringArtHomepage() {
                 </CardHeader>
                 <CardFooter className="flex justify-between items-center">
                   {/* <span className="text-sm text-gray-500">⭐ {product.reviews} reviews</span> */}
-                  <Button className="bg-amber-600 hover:bg-amber-700">Place Order</Button>
+                  <a href="#contact"><Button onClick={() => {setMessage(`Hello, \nI am interested in the ${product.name.toUpperCase()}. \nI want to place an order. \n[......Add extra details and requests here.....]`)}} className="bg-amber-600 hover:bg-amber-700">Place Order</Button></a>
                 </CardFooter>
               </Card>
             ))}
@@ -248,19 +252,24 @@ export default function StringArtHomepage() {
       {/* Newsletter CTA */}
       <section className="py-16 px-4 bg-gradient-to-r from-amber-500 to-amber-600 text-white">
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">Join Our Art Community</h2>
-          <p className="mb-8 text-amber-100">Subscribe to receive exclusive offers, early access to new collections, and a free guide to caring for your string art.</p>
-          <div className="flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
-            <Input 
+          <h2 className="text-3xl font-bold mb-4">Join Our Art Community on Social Media</h2>
+          <p className="mb-8 text-amber-100">Join us for exclusive offers, early access to new collections, and a free guide to caring for your string art.</p>
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-2 max-w-md mx-auto">
+              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="mx-2 text-2xl md:text-6xl hover:text-gray-200"><FaInstagram /></a>
+              <a href="https://www.pinterest.com" target="_blank" rel="noopener noreferrer" className="mx-2 text-2xl md:text-6xl hover:text-gray-200"><FaPinterest /></a>
+              <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="mx-2 text-2xl md:text-6xl hover:text-gray-200"><FaFacebook /></a>
+              <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" className="mx-2 text-2xl md:text-6xl hover:text-gray-200"><FaYoutube /></a>
+           
+            {/* <Input 
               type="email" 
               placeholder="Your email address" 
               className="bg-white text-gray-800"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <Button className="bg-gray-800 hover:bg-gray-900 text-white">Subscribe</Button>
+            <Button className="bg-gray-800 hover:bg-gray-900 text-white">Subscribe</Button> */}
           </div>
-          <p className="mt-4 text-sm text-amber-100">By subscribing, you agree to our Privacy Policy and consent to receive updates.</p>
+          {/* <p className="mt-4 text-sm text-amber-100">By subscribing, you agree to our Privacy Policy and consent to receive updates.</p> */}
         </div>
       </section>
 
@@ -318,7 +327,7 @@ export default function StringArtHomepage() {
               <Card>
                 <CardHeader>
                   <CardTitle>Request a Consultation</CardTitle>
-                  <CardDescription>Fill out the form below and we&qpos;ll contact you within 24 hours.</CardDescription>
+                  <CardDescription>Fill out the form below and we&apos;ll contact you within 24 hours.</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handleSubmit}>
@@ -344,7 +353,7 @@ export default function StringArtHomepage() {
                       </div>
                     </div>
                     <div className="mb-4">
-                      <Label htmlFor="message">Tell us about your vision</Label>
+                      <Label htmlFor="message">Tell us about your Order.</Label>
                       <Textarea 
                         id="message" 
                         rows={4}
