@@ -124,7 +124,7 @@ export default function StringArtHomepage() {
       </Head>
 
       {/* Navigation */}
-      <nav className="z-100 fixed top-0 left-0 right-0 flex items-center justify-between p-6 bg-white shadow-sm">
+      <nav className="z-100 fixed top-0 left-0 right-0 flex items-center justify-between p-6 md:p-2 bg-white shadow-sm">
         <div className="text-2xl font-bold text-amber-700">Artisan Strings</div>
         <div className="hidden md:flex space-x-6">
           <a
@@ -492,7 +492,7 @@ export default function StringArtHomepage() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-16 px-4 bg-amber-50">
+      <section id="contact" className=" py-20 px-4 bg-amber-50">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
